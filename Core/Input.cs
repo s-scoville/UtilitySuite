@@ -68,7 +68,7 @@ namespace UtilitySuite.Core
             return decimalVal;
         }
 
-        public static int GetNonEmptyString(string prompt, string userInput)
+        public static string GetNonEmptyString(string prompt)
         {
             
         }
