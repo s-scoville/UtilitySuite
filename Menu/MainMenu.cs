@@ -4,7 +4,11 @@ using System.Text;
 
 namespace UtilitySuite.Menu
 {
-    internal class MainMenu
+    public static class MainMenu
     {
+        public static void Run()
+        {
+
+        }
     }
 }
