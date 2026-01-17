@@ -111,7 +111,16 @@ namespace UtilitySuite.Core
         /// <returns>A non-empty string entered by the user. The string will not contain only whitespace.</returns>
         public static string GetNonEmptyString(string prompt)
         {
-            
+            Console.Write(prompt);
+            string input = Console.ReadLine();
+            input = input.Trim();
+            while(string.IsNullOrWhiteSpace(input))
+            {
+                Console.Write($"Invalid input. {prompt}");
+                input = Console.ReadLine();
+                input = input.Trim();
+            }
+            return input;
         }
     }
 }
