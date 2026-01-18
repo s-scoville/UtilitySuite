@@ -1,5 +1,6 @@
 ﻿using System;
 using UtilitySuite.Core;
+using UtilitySuite.Tools;
 
 namespace UtilitySuite.Menu
 {
