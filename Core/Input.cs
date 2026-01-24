@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace UtilitySuite.Core
+﻿namespace UtilitySuite.Core
 {
     public static class Input
     {
@@ -18,13 +15,12 @@ namespace UtilitySuite.Core
         {
             int inputVal;
             Console.Write(prompt);
-            string intInput = Console.ReadLine();
-            intInput = intInput.Trim();
+            string intInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             while (!int.TryParse(intInput, out inputVal) || inputVal < min)
             {
                 Console.Write($"Invalid input. {prompt}");
-                intInput = Console.ReadLine();
-                intInput = intInput.Trim();
+                intInput = (Console.ReadLine() ?? string.Empty).Trim();
             }
             return inputVal;
         }
@@ -42,13 +38,12 @@ namespace UtilitySuite.Core
         {
             int inputVal;
             Console.Write(prompt);
-            string intInput = Console.ReadLine();
-            intInput = intInput.Trim();
+            string intInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             while (!int.TryParse(intInput, out inputVal) || inputVal < min || inputVal > max)
             {
                 Console.Write($"Invalid input. {prompt}");
-                intInput = Console.ReadLine();
-                intInput = intInput.Trim();
+                intInput = (Console.ReadLine() ?? string.Empty).Trim();
             }
             return inputVal;
         }
@@ -67,13 +62,13 @@ namespace UtilitySuite.Core
         {
             decimal decimalVal;
             Console.Write(prompt);
-            string decimalInput = Console.ReadLine();
-            decimalInput = decimalInput.Trim();
+            string decimalInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             while (!decimal.TryParse(decimalInput, out decimalVal) || decimalVal < min)
             {
                 Console.Write($"Invalid input. {prompt}");
-                decimalInput = Console.ReadLine();
-                decimalInput = decimalInput.Trim();
+                decimalInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             }
             return decimalVal;
         }
@@ -90,13 +85,13 @@ namespace UtilitySuite.Core
         {
             decimal decimalVal;
             Console.Write(prompt);
-            string decimalInput = Console.ReadLine();
-            decimalInput = decimalInput.Trim();
+            string decimalInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             while (!decimal.TryParse(decimalInput, out decimalVal))
             {
                 Console.Write($"Invalid input. {prompt}");
-                decimalInput = Console.ReadLine();
-                decimalInput = decimalInput.Trim();
+                decimalInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             }
             return decimalVal;
         }
@@ -111,21 +106,19 @@ namespace UtilitySuite.Core
         public static string GetNonEmptyString(string prompt)
         {
             Console.Write(prompt);
-            string input = Console.ReadLine();
-            input = input.Trim();
-            while(string.IsNullOrWhiteSpace(input) || input.Contains('|'))
+            string input = (Console.ReadLine() ?? string.Empty).Trim();
+
+            while (string.IsNullOrWhiteSpace(input) || input.Contains('|'))
             {
                 if (string.IsNullOrWhiteSpace(input))
                 {
                     Console.Write($"Input cannot be empty. {prompt}");
-                    input = Console.ReadLine();
-                    input = input.Trim();
+                    input = (Console.ReadLine() ?? string.Empty).Trim();
                 }
                 else if(input.Contains('|'))
                 {
                     Console.Write($"Input cannot contain the pipe (|) character. {prompt}");
-                    input = Console.ReadLine();
-                    input = input.Trim();
+                    input = (Console.ReadLine() ?? string.Empty).Trim();
                 }
             }
             return input;
