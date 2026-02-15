@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UtilitySuite.Core
+﻿namespace UtilitySuite.Core
 {
     public static class Input
     {
@@ -17,13 +15,12 @@ namespace UtilitySuite.Core
         {
             int inputVal;
             Console.Write(prompt);
-            string intInput = Console.ReadLine();
-            intInput = intInput.Trim();
+            string intInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             while (!int.TryParse(intInput, out inputVal) || inputVal < min)
             {
                 Console.Write($"Invalid input. {prompt}");
-                intInput = Console.ReadLine();
-                intInput = intInput.Trim();
+                intInput = (Console.ReadLine() ?? string.Empty).Trim();
             }
             return inputVal;
         }
@@ -41,13 +38,12 @@ namespace UtilitySuite.Core
         {
             int inputVal;
             Console.Write(prompt);
-            string intInput = Console.ReadLine();
-            intInput = intInput.Trim();
+            string intInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             while (!int.TryParse(intInput, out inputVal) || inputVal < min || inputVal > max)
             {
                 Console.Write($"Invalid input. {prompt}");
-                intInput = Console.ReadLine();
-                intInput = intInput.Trim();
+                intInput = (Console.ReadLine() ?? string.Empty).Trim();
             }
             return inputVal;
         }
@@ -66,13 +62,13 @@ namespace UtilitySuite.Core
         {
             decimal decimalVal;
             Console.Write(prompt);
-            string decimalInput = Console.ReadLine();
-            decimalInput = decimalInput.Trim();
+            string decimalInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             while (!decimal.TryParse(decimalInput, out decimalVal) || decimalVal < min)
             {
                 Console.Write($"Invalid input. {prompt}");
-                decimalInput = Console.ReadLine();
-                decimalInput = decimalInput.Trim();
+                decimalInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             }
             return decimalVal;
         }
@@ -89,34 +85,41 @@ namespace UtilitySuite.Core
         {
             decimal decimalVal;
             Console.Write(prompt);
-            string decimalInput = Console.ReadLine();
-            decimalInput = decimalInput.Trim();
+            string decimalInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             while (!decimal.TryParse(decimalInput, out decimalVal))
             {
                 Console.Write($"Invalid input. {prompt}");
-                decimalInput = Console.ReadLine();
-                decimalInput = decimalInput.Trim();
+                decimalInput = (Console.ReadLine() ?? string.Empty).Trim();
+
             }
             return decimalVal;
         }
 
         /// <summary>
-        /// Prompts the user for input and returns a non-empty string entered by the user.
+        /// Prompts the user for input and returns a non-empty string that does not contain the pipe (|) character.
         /// </summary>
-        /// <remarks>If the user enters an empty string or only whitespace, the prompt will be repeated
-        /// until a valid input is provided.</remarks>
-        /// <param name="prompt">The message displayed to the user when requesting input. Cannot be null.</param>
-        /// <returns>A non-empty string entered by the user. The string will not contain only whitespace.</returns>
+        /// <remarks>If the user enters an empty string or a string containing the pipe (|) character, the
+        /// method will repeatedly prompt until valid input is provided.</remarks>
+        /// <param name="prompt">The message displayed to the user when requesting input.</param>
+        /// <returns>A trimmed, non-empty string entered by the user that does not contain the pipe (|) character.</returns>
         public static string GetNonEmptyString(string prompt)
         {
             Console.Write(prompt);
-            string input = Console.ReadLine();
-            input = input.Trim();
-            while(string.IsNullOrWhiteSpace(input))
+            string input = (Console.ReadLine() ?? string.Empty).Trim();
+
+            while (string.IsNullOrWhiteSpace(input) || input.Contains('|'))
             {
-                Console.Write($"Invalid input. {prompt}");
-                input = Console.ReadLine();
-                input = input.Trim();
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.Write($"Input cannot be empty. {prompt}");
+                    input = (Console.ReadLine() ?? string.Empty).Trim();
+                }
+                else if(input.Contains('|'))
+                {
+                    Console.Write($"Input cannot contain the pipe (|) character. {prompt}");
+                    input = (Console.ReadLine() ?? string.Empty).Trim();
+                }
             }
             return input;
         }
